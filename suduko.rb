@@ -90,3 +90,11 @@ class Board
     @board.flatten.join
   end
 end
+board_string = '530070000600195000098000060800060003400803001700020006060000280000419005000080079'
+board = Board.new(board_string)
+
+puts board.to_s
+
+# Output:
+# 5 3 0 0 7 0 0 0 0
+# 6 0 0 1 9 5
