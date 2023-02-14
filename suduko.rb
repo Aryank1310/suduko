@@ -59,3 +59,34 @@ end
 board_string = '530070000600195000098000060800060003400803001700020006060000280000419005000080079'
 sudoku = Sudoku.new(board_string)
 puts sudoku.solve
+class Board
+  def initialize(board_string)
+    @board = board_string.chars.map(&:to_i).each_slice(9).to_a
+  end
+
+  def to_s
+    @board.map { |row| row.join(' ') }.join("\n")
+  end
+
+  def solved?
+    Sudoku.new(board_string).solve == to_s
+  end
+
+  def solve
+    @board = Sudoku.new(to_s).solve.chars.map(&:to_i).each_slice(9).to_a
+  end
+
+  def set(row, col, num)
+    @board[row][col] = num
+  end
+
+  def get(row, col)
+    @board[row][col]
+  end
+
+  private
+
+  def board_string
+    @board.flatten.join
+  end
+end
